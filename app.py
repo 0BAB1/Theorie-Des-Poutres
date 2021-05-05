@@ -37,6 +37,9 @@ class Application(tk.Tk):
         self.left_frame.grid(row=0, column=0, padx=10, pady=5)
 
         #create differetn interfaces for each flexion cases, and grid it into a frame
+        self.create_frame1()
+
+    def create_frame1(self):
         self.frame1 = tk.Frame(self.left_frame, width=220, height=460)
         #igz
         self.igz_label1 = tk.Label(self.frame1, text="igz")
