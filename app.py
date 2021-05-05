@@ -37,18 +37,25 @@ class Application(tk.Tk):
         self.left_frame.grid(row=0, column=0, padx=10, pady=5)
 
         #create differetn interfaces for each flexion cases, and grid it into a frame
-        self.force_simple = tk.Frame(self.left_frame, width=220, height=460)
-        self.igz_label = tk.Label(self.force_simple, text="igz")
-        self.igz = tk.Entry(self.force_simple)
-        self.l_label = tk.Label(self.force_simple, text="L")
-        self.l = tk.Entry(self.force_simple)
+        self.frame1 = tk.Frame(self.left_frame, width=220, height=460)
+        #igz
+        self.igz_label1 = tk.Label(self.frame1, text="igz")
+        self.igz1 = tk.Entry(self.frame1)
+        #Lenght
+        self.l_label1 = tk.Label(self.frame1, text="L")
+        self.l1 = tk.Entry(self.frame1)
+        #actual force
+        self.f_label1 = tk.Label(self.frame1, text="F")
+        self.f1 = tk.Entry(self.frame1)
 
-        self.igz_label.grid(row=0,column=0)
-        self.igz.grid(row=0,column=1)
-        self.l_label.grid(row=1,column=0)
-        self.l.grid(row=1,column=1)
+        self.igz_label1.grid(row=0,column=0)
+        self.igz1.grid(row=0,column=1)
+        self.l_label1.grid(row=1,column=0)
+        self.l1.grid(row=1,column=1)
+        self.f_label1.grid(row=2,column=0)
+        self.f1.grid(row=2,column=1)
 
-        self.force_simple.grid()
+        self.frame1.grid()
     
     def get_entry(self, ent):
         """get entry of a specified button"""
