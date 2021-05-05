@@ -5,55 +5,54 @@ class Application(tk.Tk):
 
     def __init__(self):
         tk.Tk.__init__(self)
-        #radiobutton type variable
-        self.type_flexion = tk.StringVar()
-        self.type_section = tk.StringVar()
         #initialize windows bases
-        self.geometry("640x480")
+        self.geometry("720x480")
         self.make_widgets()
+        self.config(menu=self.menuBar, bg="skyblue")
 
     def make_widgets(self):
         """Create All Widget On The Front Page"""
-        #flexion label
-        self.hello = tk.Label(text="type de flexion ?")
+        self.menuBar = tk.Menu()
+        #menus to select which flexion
+        flexionMenu = tk.Menu(self.menuBar, tearoff=0)
+        flexionMenu.add_command(label="force en bout")
+        flexionMenu.add_command(label="force repartie")
+        flexionMenu.add_separator()
+        flexionMenu.add_command(label="moment, double appui")
+        flexionMenu.add_command(label="force x=a")
+        flexionMenu.add_command(label="force x=L/2")
 
-        #radio buttons in order to select which flexion mode we're in
-        ##single embedding link
-        self.type_flexion1 = tk.Radiobutton(text = "force en bout", value="1", variable=self.type_flexion, command= lambda : self.activate_flexion(1))
-        self.type_flexion2 = tk.Radiobutton(text = "force repartie", value="2", variable=self.type_flexion, command= lambda : self.activate_flexion(2))
-        ##double embedding link
-        self.type_flexion21 = tk.Radiobutton(text = "moment point d'appui", value="21", variable=self.type_flexion, command= lambda : self.activate_flexion(21))
-        self.type_flexion22 = tk.Radiobutton(text = "force x=a", value="22", variable=self.type_flexion, command= lambda : self.activate_flexion(22))
-        self.type_flexion23 = tk.Radiobutton(text = "force x= L/2", value="23", variable=self.type_flexion, command= lambda : self.activate_flexion(23))
-        ##the command on the radio button wil activate certain entries (specified with nubers indexation)
+        self.menuBar.add_cascade(label="flexion", menu=flexionMenu)
+        #menus to select which section
+        sectionMenu = tk.Menu(self.menuBar, tearoff=0)
+        sectionMenu.add_command(label="rectangulaire")
+        sectionMenu.add_command(label="rectangulaire creuse")
+        sectionMenu.add_command(label="circulaire")
+        sectionMenu.add_command(label="circulaire creuse")
 
-        #radio buttons to determinate polar section I
-        ##square
-        self.type_section_square = tk.Radiobutton()
-        ##empty square
-        self.type_section_square = tk.Radiobutton()
-        ##circle
-        self.type_section_square = tk.Radiobutton()
-        ##empty_cicle
-        self.type_section_square = tk.Radiobutton()
+        self.menuBar.add_cascade(label="section", menu=sectionMenu)
 
-        #entries for different flexion cases
+        #create the left frame
+        self.left_frame = tk.Frame(self, width=240, height=480)
+        self.left_frame.grid(row=0, column=0, padx=10, pady=5)
 
-        #entries for differents section cases
+        #create differetn interfaces for each flexion cases, and grid it into a frame
+        self.force_simple = tk.Frame(self.left_frame, width=220, height=460)
+        self.igz_label = tk.Label(self.force_simple, text="igz")
+        self.igz = tk.Entry(self.force_simple)
+        self.l_label = tk.Label(self.force_simple, text="L")
+        self.l = tk.Entry(self.force_simple)
 
-        #frames for each case, where we pack all entries
+        self.igz_label.grid(row=0,column=0)
+        self.igz.grid(row=0,column=1)
+        self.l_label.grid(row=1,column=0)
+        self.l.grid(row=1,column=1)
 
-        #pack all
-        self.hello.pack()
-        self.type_flexion1.pack()
-        self.type_flexion2.pack()
-        self.type_flexion21.pack()
-        self.type_flexion22.pack()
-        self.type_flexion23.pack()
+        self.force_simple.grid()
     
-    def get_entry(self, button):
+    def get_entry(self, ent):
         """get entry of a specified button"""
-        e = button.get()
+        e = ent.get()
         print(e)
 
     def activate_flexion(self, type):
