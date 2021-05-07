@@ -31,7 +31,12 @@ class Frame1(tk.Frame):
 
         #button and grid
         self.enter = tk.Button(self, text="valider", height=1, width=20, command=self.proceed)
-        self.enter.grid()
+        self.enter.grid(row=3)
+
+        #image and grid
+        self.file = tk.PhotoImage(file="assets/1.png")
+        self.img = tk.Label(self, image=self.file)
+        self.img.grid(row=4)
     
     def proceed(self):
         print("calcul")
@@ -47,9 +52,3 @@ class Frame2(tk.Frame):
         #grid igz
         self.igz_label.grid(row=0,column=0)
         self.igz.grid(row=0,column=1)
-
-#Create a class to simplify images creation
-def make_label(master, path):
-    """create an image as a label, require img path, returns the label itself"""
-    img = tk.PhotoImage(path)
-    return tk.Label(master, image=img)
