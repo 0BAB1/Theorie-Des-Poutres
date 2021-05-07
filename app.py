@@ -1,4 +1,5 @@
 import tkinter as tk
+from frames import *
 
 class Application(tk.Tk):
     """main app, initialise and lunch mainloop to start"""
@@ -12,7 +13,9 @@ class Application(tk.Tk):
 
     def make_widgets(self):
         """Create All Widget On The Front Page"""
+        #creating menu
         self.menuBar = tk.Menu()
+
         #menus to select which flexion
         flexionMenu = tk.Menu(self.menuBar, tearoff=0)
         flexionMenu.add_command(label="force en bout")
@@ -21,49 +24,23 @@ class Application(tk.Tk):
         flexionMenu.add_command(label="moment, double appui")
         flexionMenu.add_command(label="force x=a")
         flexionMenu.add_command(label="force x=L/2")
-
         self.menuBar.add_cascade(label="flexion", menu=flexionMenu)
+
         #menus to select which section
         sectionMenu = tk.Menu(self.menuBar, tearoff=0)
         sectionMenu.add_command(label="rectangulaire")
         sectionMenu.add_command(label="rectangulaire creuse")
         sectionMenu.add_command(label="circulaire")
         sectionMenu.add_command(label="circulaire creuse")
-
         self.menuBar.add_cascade(label="section", menu=sectionMenu)
 
         #create the left frame
         self.left_frame = tk.Frame(self, width=240, height=480)
-        self.left_frame.grid(row=0, column=0, padx=10, pady=5)
+        self.left_frame.grid(row=0, column=0, padx=10, pady=5, sticky="NESW")
 
         #create differetn interfaces for each flexion cases, and grid it into a frame
-        self.create_frame1()
-
-    def create_frame1(self):
-        self.frame1 = tk.Frame(self.left_frame, width=220, height=460)
-        #igz
-        self.igz_label1 = tk.Label(self.frame1, text="igz")
-        self.igz1 = tk.Entry(self.frame1)
-        #Lenght
-        self.l_label1 = tk.Label(self.frame1, text="L")
-        self.l1 = tk.Entry(self.frame1)
-        #actual force
-        self.f_label1 = tk.Label(self.frame1, text="F")
-        self.f1 = tk.Entry(self.frame1)
-
-        self.igz_label1.grid(row=0,column=0)
-        self.igz1.grid(row=0,column=1)
-        self.l_label1.grid(row=1,column=0)
-        self.l1.grid(row=1,column=1)
-        self.f_label1.grid(row=2,column=0)
-        self.f1.grid(row=2,column=1)
-
-        self.frame1.grid()
-    
-    def get_entry(self, ent):
-        """get entry of a specified button"""
-        e = ent.get()
-        print(e)
+        frame1 = Frame1(self.left_frame)
+        frame1.grid()
 
     def activate_flexion(self, type):
         pass
