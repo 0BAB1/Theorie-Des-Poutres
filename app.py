@@ -48,7 +48,7 @@ class Application(tk.Tk):
         self.frames.append(frame2)
 
     def activate_flexion(self, i):
-        for j in self.frames:
-            j.grid_forget()
+        for frame in self.frames:
+            frame.grid_forget()
         
         self.frames[i].grid()
