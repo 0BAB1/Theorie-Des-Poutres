@@ -6,6 +6,8 @@ class Application(tk.Tk):
 
     def __init__(self):
         tk.Tk.__init__(self)
+        #create a convenient array to store frames
+        self.frames = []
         #initialize windows bases
         self.geometry("720x480")
         self.make_widgets()
@@ -18,8 +20,8 @@ class Application(tk.Tk):
 
         #menus to select which flexion
         flexionMenu = tk.Menu(self.menuBar, tearoff=0)
-        flexionMenu.add_command(label="force en bout")
-        flexionMenu.add_command(label="force repartie")
+        flexionMenu.add_command(label="force en bout", command = lambda : self.activate_flexion(0))
+        flexionMenu.add_command(label="force repartie", command = lambda : self.activate_flexion(1))
         flexionMenu.add_separator()
         flexionMenu.add_command(label="moment, double appui")
         flexionMenu.add_command(label="force x=a")
@@ -40,7 +42,13 @@ class Application(tk.Tk):
 
         #create differetn interfaces for each flexion cases, and grid it into a frame
         frame1 = Frame1(self.left_frame)
-        frame1.grid()
+        self.frames.append(frame1)
+        
+        frame2 = Frame2(self.left_frame)
+        self.frames.append(frame2)
 
-    def activate_flexion(self, type):
-        pass
+    def activate_flexion(self, i):
+        for j in self.frames:
+            j.grid_forget()
+        
+        self.frames[i].grid()

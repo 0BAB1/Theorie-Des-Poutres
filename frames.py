@@ -35,3 +35,21 @@ class Frame1(tk.Frame):
     
     def proceed(self):
         print("calcul")
+
+class Frame2(tk.Frame):
+    """this frame is force evenly placed force"""
+    def __init__(self, master):
+        #igz
+        super().__init__(master, width=220, height=460)
+        self.igz_label = tk.Label(self, text="igz2 omg ca a changé")
+        self.igz = tk.Entry(self)
+
+        #grid igz
+        self.igz_label.grid(row=0,column=0)
+        self.igz.grid(row=0,column=1)
+
+#Create a class to simplify images creation
+def make_label(master, path):
+    """create an image as a label, require img path, returns the label itself"""
+    img = tk.PhotoImage(path)
+    return tk.Label(master, image=img)
