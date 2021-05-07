@@ -7,9 +7,6 @@ class Frame1(tk.Frame):
         #call the tk.Frame init, markin the master, specified when class called in app.py
         super().__init__(master, width=220, height=460)
 
-        #array containing entries, and creating the frame to pack everithing in
-        entries = []
-
         #igz
         self.igz_label = tk.Label(self, text="igz")
         self.igz = tk.Entry(self)
@@ -23,18 +20,18 @@ class Frame1(tk.Frame):
         #grid igz
         self.igz_label.grid(row=0,column=0)
         self.igz.grid(row=0,column=1)
-        entries.append(self.igz)
 
         #grid L
         self.l_label.grid(row=1,column=0)
         self.l.grid(row=1,column=1)
-        entries.append(self.l)
 
         #grid force
         self.f_label.grid(row=2,column=0)
         self.f.grid(row=2,column=1)
-        entries.append(self.f)
 
         #button and grid
-        self.enter = tk.Button(self, text="valider", height=1, width=20)
+        self.enter = tk.Button(self, text="valider", height=1, width=20, command=self.proceed)
         self.enter.grid()
+    
+    def proceed(self):
+        print("calcul")
